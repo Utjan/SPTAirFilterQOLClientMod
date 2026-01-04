@@ -15,18 +15,18 @@ namespace AirFilterQOLClientMod.Patches
 
 
         [PatchPrefix]
-        static bool Prefix(ref AirFilteringUnitBehaviour __instance, float deltaTime, out bool __state)
+        static bool Prefix(ref AirFilteringUnitBehaviour __instance, float deltaTime, out float __state)
         {
-            __state = __instance.ResourceConsumer.IsOn;            
-            __instance.ResourceConsumer.IsOn = false;
+            __state = __instance.ResourceConsumer.Float_0;            
+            __instance.ResourceConsumer.Float_0 = 0;
 
             return true; // return true to run the original code
         }
 
         [PatchPostfix]
-        static void Postfix(ref AirFilteringUnitBehaviour __instance, bool __state)
+        static void Postfix(ref AirFilteringUnitBehaviour __instance, float __state)
         {
-            __instance.ResourceConsumer.IsOn = __state;
+            __instance.ResourceConsumer.Float_0 = __state;
         }
     }
 }
